@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tharusha Ishan | Fullstack Developer</title>
+    <meta name="description" content="Tharusha Ishan is a passionate Web Developer, Full Stack Developer, and YouTuber specializing in building modern, scalable, and user-friendly applications. Explore projects, tutorials, and insights into software engineering and full-stack development" />
+    <meta name="keywords" content="tharusha ishan,web developer,full stack developer,youtuber"/>
+    <meta name="author" content="Tharusha Ishan" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
@@ -18,6 +21,24 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
+    <link rel="canonical" href="https://tharushaishan.me">
+    <!-- person schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Tharusha Ishan",
+        "jobTitle": "Full Stack Developer",
+        "url": "https://tharushaishan.me",
+        "sameAs": [
+          "https://www.youtube.com/@Tharusha_Ishan",
+          "https://github.com/Tharusha-Ishan",
+          "https://www.linkedin.com/in/tharusha-ishan-5b438431b/"
+        ],
+        "description": "Web Developer, Full Stack Developer, and YouTuber specializing in modern, scalable applications and tutorials.",
+        "image": "https://www.tharushaishan.me/profile.jpg"
+      }
+    </script>
     <style>
       body {
         font-family: "Inter", sans-serif;
@@ -75,6 +96,77 @@
         border: 4px solid #3b82f6;
         box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
       }
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 100;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+      .modal-content {
+        background-color: #0f172a;
+        margin: 10% auto;
+        padding: 30px;
+        border: 1px solid #334155;
+        width: 80%;
+        max-width: 800px;
+        border-radius: 10px;
+        position: relative;
+      }
+      .close-btn {
+        color: #94a3b8;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .close-btn:hover {
+        color: #e2e8f0;
+      }
+
+
+
+
+
+
+
+
+
+
+  
+
+    @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #93c5fd }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0) }
+    50% { transform: translateY(-6px) }
+  }
+  @keyframes pulse {
+    from { opacity: 0.9 }
+    to { opacity: 1 }
+  }
+
+
+
+
+
+
+
+
+
+
+
+      
     </style>
   </head>
   <body>
@@ -83,6 +175,53 @@
 
     <!-- Floating Particles Canvas -->
     <div id="particles-js" class="fixed top-0 left-0 w-full h-full z-0"></div>
+
+    <!-- Project Details Modal -->
+    <div id="projectModal" class="modal">
+      <div class="modal-content glass-card">
+        <span class="close-btn">&times;</span>
+        <h2 id="modalTitle" class="text-3xl font-bold mb-4 gradient-text"></h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div>
+            <img
+              id="modalImage"
+              src=""
+              alt="Project"
+              class="w-full rounded-lg mb-4"
+            />
+            <div class="flex space-x-4 mb-6">
+              <a
+                id="liveLink"
+                href="#"
+                target="_blank"
+                class="bg-gradient-to-r from-blue-500 to-purple-600 px-4 py-2 rounded-lg hover:shadow-lg transition flex items-center"
+              >
+                <i class="fas fa-external-link-alt mr-2"></i> Live Demo
+              </a>
+              <a
+                id="githubLink"
+                href="#"
+                target="_blank"
+                class="border border-blue-400 text-blue-400 px-4 py-2 rounded-lg hover:bg-blue-900/30 transition flex items-center"
+              >
+                <i class="fab fa-github mr-2"></i> View Code
+              </a>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold mb-2">Project Description</h3>
+            <p id="modalDescription" class="text-gray-300 mb-6"></p>
+            <h3 class="text-xl font-semibold mb-2">Technologies Used</h3>
+            <div id="modalTechnologies" class="flex flex-wrap gap-2 mb-6"></div>
+            <h3 class="text-xl font-semibold mb-2">Key Features</h3>
+            <ul
+              id="modalFeatures"
+              class="list-disc list-inside text-gray-300 space-y-2"
+            ></ul>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 w-full z-50 glass-card shadow-lg">
@@ -101,7 +240,12 @@
           <a href="#skills" class="hover:text-blue-400 transition">Skills</a>
           <a href="#contact" class="hover:text-blue-400 transition">Contact</a>
           <a
-            href="https://drive.google.com/file/d/148FIHoOT-hcUlayILOfWfbtfLBYuSP8F/view?usp=drivesdk"
+
+
+
+            href="#"
+            id="resumeBtn"
+
             class="bg-gradient-to-r from-blue-500 to-purple-600 px-6 py-2 rounded-full hover:shadow-lg transition"
             >Resume</a
           >
@@ -123,7 +267,9 @@
           <a href="#skills" class="hover:text-blue-400 transition">Skills</a>
           <a href="#contact" class="hover:text-blue-400 transition">Contact</a>
           <a
-            href="https://drive.google.com/file/d/148FIHoOT-hcUlayILOfWfbtfLBYuSP8F/view?usp=drivesdk"
+            href="#"
+            id="resumeBtnMobile"
+
             class="bg-gradient-to-r from-blue-500 to-purple-600 px-6 py-2 rounded-full text-center"
             >Resume</a
           >
@@ -142,9 +288,35 @@
           <h1 class="text-5xl md:text-6xl font-bold mb-6">
             <span class="gradient-text">Tharusha Ishan</span>
           </h1>
-          <h2 class="text-2xl md:text-3xl mb-6 text-blue-200">
-            Undergraduate Software Engineer
-          </h2>
+          <h2 
+          class="text-2xl md:text-3xl mb-6"
+          style="
+            color: #bfdbfe;
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 1pxsolid #93c5fd;
+            width: 0;
+            animation: 
+              typing 2.5s steps(30, end) forwards 0.5s,
+              blink-caret 0.75s step-end infinite,
+              
+              pulse 2s ease infinite alternate 3s;
+            text-shadow: 0 0 8px rgba(5, 21, 23, 0.4);
+          "
+        >
+          <span style="
+            display: inline-block;
+            background: linear-gradient(90deg, #93c5fd, #a5b4fc, #bfdbfe);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+          ">
+             Software Engineer
+          </span>
+        </h2>
+        
+
           <p class="text-lg md:text-xl mb-10 text-gray-300">
             Fullstack Developer crafting modern web applications with
             cutting-edge technologies. Passionate about building solutions that
@@ -313,498 +485,486 @@
         </p>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- Project 1 -->
-          <div
-            class="relative rounded-xl overflow-hidden group"
-            data-aos="fade-up"
-          >
-            <img
-              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-              alt="Dweller Project"
-              class="w-full h-64 object-cover transition duration-500 group-hover:scale-105"
-            />
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/70 to-transparent"
-            ></div>
-            <div class="absolute bottom-0 left-0 p-6 w-full">
-              <h3 class="text-xl font-bold text-white">Dweller</h3>
-              <p class="text-gray-300">Online property sale platform</p>
-              <div
-                class="project-overlay absolute inset-0 bg-gray-900/80 flex flex-col justify-center items-center p-6"
-              >
-                <h3 class="text-2xl font-bold text-white mb-2">Dweller</h3>
-                <p class="text-gray-300 text-center mb-4">
-                  A modern property selling platform with rich listing UI,
-                  advanced search, and contact features.
-                </p>
-                <div class="flex flex-wrap justify-center gap-2 mb-4">
-                  <span
-                    class="skill-pill bg-blue-900/50 text-blue-300 px-3 py-1 rounded-full text-sm"
-                    >React</span
-                  >
-                  <span
-                    class="skill-pill bg-blue-900/50 text-blue-300 px-3 py-1 rounded-full text-sm"
-                    >Node.js</span
-                  >
-                  <span
-                    class="skill-pill bg-blue-900/50 text-blue-300 px-3 py-1 rounded-full text-sm"
-                    >MongoDB</span
-                  >
-                </div>
-                <div class="flex space-x-4">
-                  <a href="#" class="text-white hover:text-blue-400">
-                    <i class="fas fa-external-link-alt"></i>
-                  </a>
-                  <a href="#" class="text-white hover:text-blue-400">
-                    <i class="fab fa-github"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
 
-          <!-- Project 2 -->
-          <div
-            class="relative rounded-xl overflow-hidden group"
-            data-aos="fade-up"
-            data-aos-delay="100"
-          >
-            <img
-              src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-              alt="Vetez Project"
-              class="w-full h-64 object-cover transition duration-500 group-hover:scale-105"
-            />
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/70 to-transparent"
-            ></div>
-            <div class="absolute bottom-0 left-0 p-6 w-full">
-              <h3 class="text-xl font-bold text-white">Vetez</h3>
-              <p class="text-gray-300">Vet hospital management system</p>
-              <div
-                class="project-overlay absolute inset-0 bg-gray-900/80 flex flex-col justify-center items-center p-6"
-              >
-                <h3 class="text-2xl font-bold text-white mb-2">Vetez</h3>
-                <p class="text-gray-300 text-center mb-4">
-                  Comprehensive pet hospital management system with appointment
-                  scheduling, medical records, and inventory.
-                </p>
-                <div class="flex flex-wrap justify-center gap-2 mb-4">
-                  <span
-                    class="skill-pill bg-blue-900/50 text-blue-300 px-3 py-1 rounded-full text-sm"
-                    >Java</span
-                  >
-                  <span
-                    class="skill-pill bg-blue-900/50 text-blue-300 px-3 py-1 rounded-full text-sm"
-                    >Spring Boot</span
-                  >
-                  <span
-                    class="skill-pill bg-blue-900/50 text-blue-300 px-3 py-1 rounded-full text-sm"
-                    >MySQL</span
-                  >
-                </div>
-                <div class="flex space-x-4">
-                  <a href="#" class="text-white hover:text-blue-400">
-                    <i class="fas fa-external-link-alt"></i>
-                  </a>
-                  <a href="#" class="text-white hover:text-blue-400">
-                    <i class="fab fa-github"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
 
-          <!-- Project 3 -->
-          <div
-            class="relative rounded-xl overflow-hidden group"
-            data-aos="fade-up"
-            data-aos-delay="200"
-          >
-            <img
-              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-              alt="AutoDoc Project"
-              class="w-full h-64 object-cover transition duration-500 group-hover:scale-105"
-            />
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/70 to-transparent"
-            ></div>
-            <div class="absolute bottom-0 left-0 p-6 w-full">
-              <h3 class="text-xl font-bold text-white">AutoDoc</h3>
-              <p class="text-gray-300">Vehicle service station system</p>
-              <div
-                class="project-overlay absolute inset-0 bg-gray-900/80 flex flex-col justify-center items-center p-6"
-              >
-                <h3 class="text-2xl font-bold text-white mb-2">AutoDoc</h3>
-                <p class="text-gray-300 text-center mb-4">
-                  Complete vehicle service management platform with appointment
-                  booking, inventory, and admin panel.
-                </p>
-                <div class="flex flex-wrap justify-center gap-2 mb-4">
-                  <span
-                    class="skill-pill bg-blue-900/50 text-blue-300 px-3 py-1 rounded-full text-sm"
-                    >C#</span
-                  >
-                  <span
-                    class="skill-pill bg-blue-900/50 text-blue-300 px-3 py-1 rounded-full text-sm"
-                    >.NET</span
-                  >
-                  <span
-                    class="skill-pill bg-blue-900/50 text-blue-300 px-3 py-1 rounded-full text-sm"
-                    >SQL Server</span
-                  >
-                </div>
-                <div class="flex space-x-4">
-                  <a href="#" class="text-white hover:text-blue-400">
-                    <i class="fas fa-external-link-alt"></i>
-                  </a>
-                  <a href="#" class="text-white hover:text-blue-400">
-                    <i class="fab fa-github"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+     <!-- Project 1 - Atharaman -->
+<div
+class="relative rounded-xl overflow-hidden group project-card"
+data-aos="fade-up"
+onclick="openProjectModal('Atharaman', 'A Sri Lankan camping platform connecting travelers with local guides, shops, and resources. Atharaman is a full-stack web platform that centralizes camping resources across Sri Lanka, offering users curated travel information, gear guides, and access to local experts and shops.', 'https://images.unsplash.com/photo-1534187886935-1e1236e856c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', ['React.js', 'HTML', 'CSS', 'Spring Boot', 'MySQL'], ['User registration and authentication', 'Real-time location viewing with listings', 'Review and rating system', 'Camping gear recommendations', 'Admin panel for management'], 'https://chinthaka-lakshan.github.io/Atharaman/', ['https://github.com/chinthaka-lakshan/Atharaman', 'https://github.com/Chamika-Herath/travel_compass_backend'])"
+>
+<img
+  src="images/Athraman.jpg"
+  alt="Atharaman Project"
+  class="w-full h-64 object-cover transition duration-500 group-hover:scale-105"
+/>
+<div
+  class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/70 to-transparent"
+></div>
+<div class="absolute bottom-0 left-0 p-6 w-full">
+  <h3 class="text-xl font-bold text-white">Atharaman</h3>
+  <p class="text-gray-300">Sri Lankan Camping Platform</p>
+  <div
+    class="project-overlay absolute inset-0 bg-gray-900/80 flex flex-col justify-center items-center p-6"
+  >
+    <h3 class="text-2xl font-bold text-white mb-10">Atharaman</h3>
+    <p class="text-gray-300 text-center mb-4">
+      A Sri Lankan camping platform connecting travelers with local guides, shops, and resources.
+    </p>
+    <div class="flex flex-wrap justify-center gap-2 mb-0 ">
+      <span
+        class="skill-pill bg-blue-900/50 text-blue-300 px-3 py-1 rounded-full text-sm"
+        >React.js</span
+      >
+      <span
+        class="skill-pill bg-blue-900/50 text-blue-300 px-3 py-1 rounded-full text-sm"
+        >Spring Boot</span
+      >
+      <span
+        class="skill-pill bg-blue-900/50 text-blue-300 px-3 py-1 rounded-full text-sm"
+        >MySQL</span
+      >
+    </div>
+    <div class="flex space-x-4">
+      <a href="https://chinthaka-lakshan.github.io/Atharaman/" class="text-white hover:text-blue-400" target="_blank" rel="noopener noreferrer">
+        <i class="fas fa-external-link-alt"></i>
+      </a>
+      <a href="https://github.com/chinthaka-lakshan/Atharaman" class="text-white hover:text-blue-400" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+  </div>
+</div>
+</div>
 
-          <!-- Project 4 -->
-          <div
-            class="relative rounded-xl overflow-hidden group"
-            data-aos="fade-up"
-          >
-            <img
-              src="https://images.unsplash.com/photo-1534187886935-1e1236e856c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-              alt="Atharaman Project"
-              class="w-full h-64 object-cover transition duration-500 group-hover:scale-105"
-            />
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/70 to-transparent"
-            ></div>
-            <div class="absolute bottom-0 left-0 p-6 w-full">
-              <h3 class="text-xl font-bold text-white">Atharaman</h3>
-              <p class="text-gray-300">Camping website</p>
-              <div
-                class="project-overlay absolute inset-0 bg-gray-900/80 flex flex-col justify-center items-center p-6"
-              >
-                <h3 class="text-2xl font-bold text-white mb-2">Atharaman</h3>
-                <p class="text-gray-300 text-center mb-4">
-                  Platform for camping enthusiasts to discover locations, book
-                  sites, and connect with other campers.
-                </p>
-                <div class="flex flex-wrap justify-center gap-2 mb-4">
-                  <span
-                    class="skill-pill bg-blue-900/50 text-blue-300 px-3 py-1 rounded-full text-sm"
-                    >JavaScript</span
-                  >
-                  <span
-                    class="skill-pill bg-blue-900/50 text-blue-300 px-3 py-1 rounded-full text-sm"
-                    >Node.js</span
-                  >
-                  <span
-                    class="skill-pill bg-blue-900/50 text-blue-300 px-3 py-1 rounded-full text-sm"
-                    >MongoDB</span
-                  >
-                </div>
-                <div class="flex space-x-4">
-                  <a href="#" class="text-white hover:text-blue-400">
-                    <i class="fas fa-external-link-alt"></i>
-                  </a>
-                  <a href="#" class="text-white hover:text-blue-400">
-                    <i class="fab fa-github"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+          <!-- Project 2 - Travel Compass -->
+<div
+class="relative rounded-xl overflow-hidden group project-card"
+data-aos="fade-up"
+data-aos-delay="100"
+onclick="openProjectModal('Travel Compass', 'AI-powered trip planner with budget-based recommendations and service provider integration. Travel Compass is a smart AI-powered platform that helps travelers plan trips based on budget, offering seamless access to hotels, guides, and vehicle rentals while optimizing trip packages.', 'https://images.unsplash.com/photo-1503220317375-aaad61436b1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', ['React.js', 'HTML', 'CSS', 'Java', 'Spring Boot', 'Python', 'MySQL'], ['AI-based travel suggestions', 'Budget-wise trip planning', 'Itinerary management tools', 'Hotel and guide linking', 'Vehicle rental integration'], 'https://tharusha-me.vercel.app', 'https://github.com/Chamika-Herath/travel_compass_frontend')"
+>
+<img
+  src="images/TravelCompass.jpg"
+  alt="Travel Compass Project"
+  class="w-full h-64 object-cover transition duration-500 group-hover:scale-105"
+/>
+<div
+  class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/70 to-transparent"
+></div>
+<div class="absolute bottom-0 left-0 p-6 w-full">
+  <h3 class="text-xl font-bold text-white">Travel Compass</h3>
+  <p class="text-gray-300">AI-powered trip planner</p>
+  <div
+    class="project-overlay absolute inset-0 bg-gray-900/80 flex flex-col justify-center items-center p-6"
+  >
+    <h3 class="text-2xl font-bold text-white mb-2">
+      Travel Compass
+    </h3>
+    <p class="text-gray-300 text-center mb-4">
+      AI-powered trip planner with budget-based recommendations and service provider integration.
+    </p>
+    <div class="flex flex-wrap justify-center gap-2 mb-8">
+      <span
+        class="skill-pill bg-blue-900/50 text-blue-300 px-3 py-1 rounded-full text-sm"
+        >React.js</span
+      >
+      <span
+        class="skill-pill bg-blue-900/50 text-blue-300 px-3 py-1 rounded-full text-sm"
+        >Spring Boot</span
+      >
+      <span
+        class="skill-pill bg-blue-900/50 text-blue-300 px-3 py-1 rounded-full text-sm"
+        >Python</span
+      >
+    </div>
+    <div class="flex space-x-4">
+      <a href="https://tharusha-me.vercel.app" class="text-white hover:text-blue-400" target="_blank" rel="noopener noreferrer">
+        <i class="fas fa-external-link-alt"></i>
+      </a>
+      <a href="https://github.com/Chamika-Herath/travel_compass_frontend" class="text-white hover:text-blue-400" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+  </div>
+</div>
+</div>
 
-          <!-- Project 5 -->
-          <div
-            class="relative rounded-xl overflow-hidden group"
-            data-aos="fade-up"
-            data-aos-delay="100"
-          >
-            <img
-              src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-              alt="Travel Compass Project"
-              class="w-full h-64 object-cover transition duration-500 group-hover:scale-105"
-            />
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/70 to-transparent"
-            ></div>
-            <div class="absolute bottom-0 left-0 p-6 w-full">
-              <h3 class="text-xl font-bold text-white">Travel Compass</h3>
-              <p class="text-gray-300">Trip budget planning tool</p>
-              <div
-                class="project-overlay absolute inset-0 bg-gray-900/80 flex flex-col justify-center items-center p-6"
-              >
-                <h3 class="text-2xl font-bold text-white mb-2">
-                  Travel Compass
-                </h3>
-                <p class="text-gray-300 text-center mb-4">
-                  Comprehensive trip planning application with budget tracking,
-                  itinerary management, and destination research.
-                </p>
-                <div class="flex flex-wrap justify-center gap-2 mb-4">
-                  <span
-                    class="skill-pill bg-blue-900/50 text-blue-300 px-3 py-1 rounded-full text-sm"
-                    >Python</span
-                  >
-                  <span
-                    class="skill-pill bg-blue-900/50 text-blue-300 px-3 py-1 rounded-full text-sm"
-                    >Django</span
-                  >
-                  <span
-                    class="skill-pill bg-blue-900/50 text-blue-300 px-3 py-1 rounded-full text-sm"
-                    >PostgreSQL</span
-                  >
-                </div>
-                <div class="flex space-x-4">
-                  <a href="#" class="text-white hover:text-blue-400">
-                    <i class="fas fa-external-link-alt"></i>
-                  </a>
-                  <a href="#" class="text-white hover:text-blue-400">
-                    <i class="fab fa-github"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+          <!-- Project 5 - AutoDoc -->
+<div
+class="relative rounded-xl overflow-hidden group project-card"
+data-aos="fade-up"
+data-aos-delay="200"
+onclick="openProjectModal('AutoDoc', 'Vehicle maintenance platform for service booking, history tracking, and workshop management. AutoDoc is a digital vehicle service management platform that enables users to book, track, and manage repair and maintenance services, enhancing customer experience and workshop efficiency.', 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', ['React.js', 'HTML', 'CSS', 'Node.js', 'Express.js', 'MySQL'], ['Online service booking', 'View service history', 'Manage appointments', 'Workshop-side dashboard', 'Customer notifications'], 'https://sachinthajayaweera.github.io/autodoc/', 'https://github.com/Sachinthajayaweera/autodoc')"
+>
+<img
+  src="images/AutoDoc - Copy.jpg"
+  alt="AutoDoc Project"
+  class="w-full h-64 object-cover transition duration-500 group-hover:scale-105"
+/>
+<div
+  class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/70 to-transparent"
+></div>
+<div class="absolute bottom-0 left-0 p-6 w-full">
+  <h3 class="text-xl font-bold text-white">AutoDoc</h3>
+  <p class="text-gray-300">Vehicle service management</p>
+  <div
+    class="project-overlay absolute inset-0 bg-gray-900/80 flex flex-col justify-center items-center p-6"
+  >
+    <h3 class="text-2xl font-bold text-white mb-2">AutoDoc</h3>
+    <p class="text-gray-300 text-center mb-4">
+      Vehicle maintenance platform for service booking, history tracking, and workshop management.
+    </p>
+    <div class="flex flex-wrap justify-center gap-2 mb-8">
+      <span
+        class="skill-pill bg-blue-900/50 text-blue-300 px-3 py-1 rounded-full text-sm"
+        >React.js</span
+      >
+      <span
+        class="skill-pill bg-blue-900/50 text-blue-300 px-3 py-1 rounded-full text-sm"
+        >Node.js</span
+      >
+      <span
+        class="skill-pill bg-blue-900/50 text-blue-300 px-3 py-1 rounded-full text-sm"
+        >MySQL</span
+      >
+    </div>
+    <div class="flex space-x-4">
+      <a href="https://sachinthajayaweera.github.io/autodoc/" class="text-white hover:text-blue-400" target="_blank" rel="noopener noreferrer">
+        <i class="fas fa-external-link-alt"></i>
+      </a>
+      <a href="https://github.com/Sachinthajayaweera/autodoc" class="text-white hover:text-blue-400" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+  </div>
+</div>
+</div>
 
-          <!-- Project 6 - Placeholder for future projects -->
-          <div
-            class="relative rounded-xl overflow-hidden group"
-            data-aos="fade-up"
-            data-aos-delay="200"
-          >
-            <div
-              class="w-full h-64 bg-gradient-to-br from-blue-900 to-purple-900 flex items-center justify-center"
-            >
-              <div class="text-center p-6">
-                <i class="fas fa-plus text-4xl text-blue-400 mb-4"></i>
-                <h3 class="text-xl font-bold text-white">Your Project Here</h3>
-                <p class="text-gray-300">What will we build together?</p>
-              </div>
-            </div>
+
+
+          <!-- Project 3 - Dweller -->
+<div
+class="relative rounded-xl overflow-hidden group project-card"
+data-aos="fade-up"
+onclick="openProjectModal('Dweller', 'Property selling platform with smart search and user-friendly listing experience. Dweller is a modern real estate platform that connects buyers and sellers through a sleek interface, advanced search capabilities, and interactive property listing features.', 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', ['HTML', 'CSS', 'JavaScript', 'PHP', 'MySQL'], ['Advanced property filtering', 'Modern listing layout', 'Buyer-seller messaging', 'Responsive design UI', 'Contact form integration'], 'https://github.com/Tharusha553', 'https://github.com/Tharusha553')"
+>
+<img
+  src="images/dwellerLogo.png"
+  alt="Dweller Project"
+  class="w-full h-64 object-cover transition duration-500 group-hover:scale-105"
+/>
+<div
+  class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/70 to-transparent"
+></div>
+<div class="absolute bottom-0 left-0 p-6 w-full">
+  <h3 class="text-xl font-bold text-white">Dweller</h3>
+  <p class="text-gray-300">Real estate platform</p>
+  <div
+    class="project-overlay absolute inset-0 bg-gray-900/80 flex flex-col justify-center items-center p-6"
+  >
+    <h3 class="text-2xl font-bold text-white mb-2">Dweller</h3>
+    <p class="text-gray-300 text-center mb-4">
+      Property selling platform with smart search and user-friendly listing experience.
+    </p>
+    <div class="flex flex-wrap justify-center gap-2 mb-8">
+      <span
+        class="skill-pill bg-blue-900/50 text-blue-300 px-3 py-1 rounded-full text-sm"
+        >HTML</span
+      >
+      <span
+        class="skill-pill bg-blue-900/50 text-blue-300 px-3 py-1 rounded-full text-sm"
+        >CSS</span
+      >
+      <span
+        class="skill-pill bg-blue-900/50 text-blue-300 px-3 py-1 rounded-full text-sm"
+        >JavaScript</span
+      >
+      <span
+        class="skill-pill bg-blue-900/50 text-blue-300 px-3 py-1 rounded-full text-sm"
+        >PHP</span
+      >
+    </div>
+    <div class="flex space-x-4">
+      <a href="https://github.com/Tharusha553" class="text-white hover:text-blue-400" target="_blank" rel="noopener noreferrer">
+        <i class="fas fa-external-link-alt"></i>
+      </a>
+      <a href="https://github.com/Tharusha553" class="text-white hover:text-blue-400" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+  </div>
+</div>
+</div>
+
+          <!-- Project 4 - VetEz -->
+<div
+class="relative rounded-xl overflow-hidden group project-card"
+data-aos="fade-up"
+data-aos-delay="100"
+onclick="openProjectModal('VetEz', 'Pet Clinic management system for pet medication tracking and owner communication. VetEz is a veterinary clinic management platform focused on streamlining operations, medication tracking, and enhancing communication between clinics and pet owners for improved pet healthcare.', 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', ['React.js', 'HTML', 'CSS', 'Node.js', 'Express.js', 'MySQL'], ['Pet medication records', 'Owner notifications', 'Appointment scheduling', 'Clinic admin dashboard', 'Health history tracking'], 'https://tharusha-me.vercel.app', 'https://github.com/Visal2000/veterinary_system')"
+>
+<img
+  src="images/VetEz.jpg"
+  alt="VetEz Project"
+  class="w-full h-64 object-cover transition duration-500 group-hover:scale-105"
+/>
+<div
+  class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/70 to-transparent"
+></div>
+<div class="absolute bottom-0 left-0 p-6 w-full">
+  <h3 class="text-xl font-bold text-white">VetEz</h3>
+  <p class="text-gray-300">Veterinary clinic management</p>
+  <div
+    class="project-overlay absolute inset-0 bg-gray-900/80 flex flex-col justify-center items-center p-6"
+  >
+    <h3 class="text-2xl font-bold text-white mb-2">VetEz</h3>
+    <p class="text-gray-300 text-center mb-4">
+      Pet Clinic management system for pet medication tracking and owner communication.
+    </p>
+    <div class="flex flex-wrap justify-center gap-2 mb-8">
+      <span
+        class="skill-pill bg-blue-900/50 text-blue-300 px-3 py-1 rounded-full text-sm"
+        >React.js</span
+      >
+      <span
+        class="skill-pill bg-blue-900/50 text-blue-300 px-3 py-1 rounded-full text-sm"
+        >Node.js</span
+      >
+      <span
+        class="skill-pill bg-blue-900/50 text-blue-300 px-3 py-1 rounded-full text-sm"
+        >MySQL</span
+      >
+    </div>
+    <div class="flex space-x-4">
+      <a href="https://tharusha-me.vercel.app" class="text-white hover:text-blue-400" target="_blank" rel="noopener noreferrer">
+        <i class="fas fa-external-link-alt"></i>
+      </a>
+      <a href="https://github.com/Visal2000/veterinary_system" class="text-white hover:text-blue-400" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+  </div>
+</div>
+</div>
+
+
+        <!-- Project 6 - DeepNix -->
+<div
+class="relative rounded-xl overflow-hidden group project-card"
+data-aos="fade-up"
+data-aos-delay="300"
+onclick="openProjectModal('DeepNix', 'Web development firm crafting scalable, responsive websites and modern web applications. DeepNix is a web development company delivering scalable, high-performance web solutions. We build responsive websites and dynamic apps tailored to business needs across diverse industries.', 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', ['React.js', 'Node.js', 'Express.js', 'MySQL'], ['Custom web development', 'Responsive UI design', 'Scalable architecture', 'Industry-specific solutions', 'Full-stack development'], 'https://tharusha-me.vercel.app', 'https://github.com/chinthaka-lakshan/DeepNixNew')"
+>
+<img
+  src="images/DeeoNix.jpg"
+  alt="DeepNix Project"
+  class="w-full h-64 object-cover transition duration-500 group-hover:scale-105"
+/>
+<div
+  class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/70 to-transparent"
+></div>
+<div class="absolute bottom-0 left-0 p-6 w-full">
+  <h3 class="text-xl font-bold text-white">DeepNix</h3>
+  <p class="text-gray-300">Web Development Company</p>
+  <div
+    class="project-overlay absolute inset-0 bg-gray-900/80 flex flex-col justify-center items-center p-6"
+  >
+    <h3 class="text-2xl font-bold text-white mb-2">DeepNix</h3>
+    <p class="text-gray-300 text-center mb-4">
+      Web development firm crafting scalable, responsive websites and modern web applications.
+    </p>
+    <div class="flex flex-wrap justify-center gap-2 mb-8">
+      <span
+        class="skill-pill bg-blue-900/50 text-blue-300 px-3 py-1 rounded-full text-sm"
+        >React.js</span
+      >
+      <span
+        class="skill-pill bg-blue-900/50 text-blue-300 px-3 py-1 rounded-full text-sm"
+        >Node.js</span
+      >
+      <span
+        class="skill-pill bg-blue-900/50 text-blue-300 px-3 py-1 rounded-full text-sm"
+        >Express.js</span
+      >
+    </div>
+    <div class="flex space-x-4">
+      <a href="https://tharusha-me.vercel.app" class="text-white hover:text-blue-400" target="_blank" rel="noopener noreferrer">
+        <i class="fas fa-external-link-alt"></i>
+      </a>
+      <a href="https://github.com/chinthaka-lakshan/DeepNixNew" class="text-white hover:text-blue-400" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+  </div>
+</div>
+</div>
+    </section>
+<!-- Skills Section -->
+<section id="skills" class="py-20 px-6 bg-gray-900/50 relative z-10">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-center gradient-text" data-aos="fade-up">
+      Technical Skills
+    </h2>
+    <p class="text-center text-gray-400 max-w-2xl mx-auto mb-16" data-aos="fade-up">
+      The tools and technologies I use to bring ideas to life
+    </p>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Programming Languages -->
+      <div class="glass-card p-8 rounded-xl" data-aos="fade-up">
+        <div class="text-center mb-6">
+          <i class="fas fa-code text-4xl text-blue-400 mb-4"></i>
+          <h3 class="text-xl font-semibold">Programming Languages</h3>
+        </div>
+        <div class="flex flex-wrap gap-3 justify-center">
+          <div class="skill-pill bg-blue-900/50 text-blue-300 px-4 py-2 rounded-full flex items-center">
+            <i class="fab fa-java mr-2"></i> Java
+          </div>
+          <div class="skill-pill bg-blue-900/50 text-blue-300 px-4 py-2 rounded-full flex items-center">
+            <i class="fab fa-python mr-2"></i> Python
+          </div>
+          <div class="skill-pill bg-blue-900/50 text-blue-300 px-4 py-2 rounded-full flex items-center">
+            <i class="fas fa-code mr-2"></i> C#
+          </div>
+          <div class="skill-pill bg-blue-900/50 text-blue-300 px-4 py-2 rounded-full flex items-center">
+            <i class="fab fa-js-square mr-2"></i> JavaScript
+          </div>
+          <div class="skill-pill bg-blue-900/50 text-blue-300 px-4 py-2 rounded-full flex items-center">
+            <i class="fab fa-php mr-2"></i> PHP
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="py-20 px-6 bg-gray-900/50 relative z-10">
-      <div class="max-w-6xl mx-auto">
-        <h2
-          class="text-3xl md:text-4xl font-bold mb-4 text-center gradient-text"
-          data-aos="fade-up"
-        >
-          Technical Skills
-        </h2>
-        <p
-          class="text-center text-gray-400 max-w-2xl mx-auto mb-16"
-          data-aos="fade-up"
-        >
-          The tools and technologies I use to bring ideas to life
-        </p>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- Programming Languages -->
-          <div class="glass-card p-8 rounded-xl" data-aos="fade-up">
-            <div class="text-center mb-6">
-              <i class="fas fa-code text-4xl text-blue-400 mb-4"></i>
-              <h3 class="text-xl font-semibold">Programming Languages</h3>
-            </div>
-            <div class="flex flex-wrap gap-3 justify-center">
-              <div
-                class="skill-pill bg-blue-900/50 text-blue-300 px-4 py-2 rounded-full flex items-center"
-              >
-                <i class="fab fa-java mr-2"></i> Java
-              </div>
-              <div
-                class="skill-pill bg-blue-900/50 text-blue-300 px-4 py-2 rounded-full flex items-center"
-              >
-                <i class="fab fa-python mr-2"></i> Python
-              </div>
-              <div
-                class="skill-pill bg-blue-900/50 text-blue-300 px-4 py-2 rounded-full flex items-center"
-              >
-                <i class="fas fa-code mr-2"></i> C#
-              </div>
-              <div
-                class="skill-pill bg-blue-900/50 text-blue-300 px-4 py-2 rounded-full flex items-center"
-              >
-                <i class="fab fa-js-square mr-2"></i> JavaScript
-              </div>
-            </div>
+      <!-- Frontend Development -->
+      <div class="glass-card p-8 rounded-xl" data-aos="fade-up" data-aos-delay="100">
+        <div class="text-center mb-6">
+          <i class="fas fa-laptop-code text-4xl text-purple-400 mb-4"></i>
+          <h3 class="text-xl font-semibold">Frontend Development</h3>
+        </div>
+        <div class="flex flex-wrap gap-3 justify-center">
+          <div class="skill-pill bg-purple-900/50 text-purple-300 px-4 py-2 rounded-full flex items-center">
+            <i class="fab fa-html5 mr-2"></i> HTML5
           </div>
-
-          <!-- Frontend Development -->
-          <div
-            class="glass-card p-8 rounded-xl"
-            data-aos="fade-up"
-            data-aos-delay="100"
-          >
-            <div class="text-center mb-6">
-              <i class="fas fa-laptop-code text-4xl text-purple-400 mb-4"></i>
-              <h3 class="text-xl font-semibold">Frontend Development</h3>
-            </div>
-            <div class="flex flex-wrap gap-3 justify-center">
-              <div
-                class="skill-pill bg-purple-900/50 text-purple-300 px-4 py-2 rounded-full flex items-center"
-              >
-                <i class="fab fa-html5 mr-2"></i> HTML5
-              </div>
-              <div
-                class="skill-pill bg-purple-900/50 text-purple-300 px-4 py-2 rounded-full flex items-center"
-              >
-                <i class="fab fa-css3-alt mr-2"></i> CSS3
-              </div>
-              <div
-                class="skill-pill bg-purple-900/50 text-purple-300 px-4 py-2 rounded-full flex items-center"
-              >
-                <i class="fab fa-react mr-2"></i> React
-              </div>
-              <div
-                class="skill-pill bg-purple-900/50 text-purple-300 px-4 py-2 rounded-full flex items-center"
-              >
-                <i class="fas fa-bold mr-2"></i> Bootstrap
-              </div>
-            </div>
+          <div class="skill-pill bg-purple-900/50 text-purple-300 px-4 py-2 rounded-full flex items-center">
+            <i class="fab fa-css3-alt mr-2"></i> CSS3
           </div>
-
-          <!-- Backend Development -->
-          <div
-            class="glass-card p-8 rounded-xl"
-            data-aos="fade-up"
-            data-aos-delay="200"
-          >
-            <div class="text-center mb-6">
-              <i class="fas fa-server text-4xl text-green-400 mb-4"></i>
-              <h3 class="text-xl font-semibold">Backend Development</h3>
-            </div>
-            <div class="flex flex-wrap gap-3 justify-center">
-              <div
-                class="skill-pill bg-green-900/50 text-green-300 px-4 py-2 rounded-full flex items-center"
-              >
-                <i class="fab fa-node-js mr-2"></i> Node.js
-              </div>
-              <div
-                class="skill-pill bg-green-900/50 text-green-300 px-4 py-2 rounded-full flex items-center"
-              >
-                <i class="fas fa-leaf mr-2"></i> Spring Boot
-              </div>
-              <div
-                class="skill-pill bg-green-900/50 text-green-300 px-4 py-2 rounded-full flex items-center"
-              >
-                <i class="fab fa-microsoft mr-2"></i> .NET
-              </div>
-              <div
-                class="skill-pill bg-green-900/50 text-green-300 px-4 py-2 rounded-full flex items-center"
-              >
-                <i class="fas fa-fire mr-2"></i> Firebase
-              </div>
-            </div>
+          <div class="skill-pill bg-purple-900/50 text-purple-300 px-4 py-2 rounded-full flex items-center">
+            <i class="fab fa-react mr-2"></i> React.js
           </div>
-
-          <!-- Databases -->
-          <div class="glass-card p-8 rounded-xl" data-aos="fade-up">
-            <div class="text-center mb-6">
-              <i class="fas fa-database text-4xl text-yellow-400 mb-4"></i>
-              <h3 class="text-xl font-semibold">Databases</h3>
-            </div>
-            <div class="flex flex-wrap gap-3 justify-center">
-              <div
-                class="skill-pill bg-yellow-900/50 text-yellow-300 px-4 py-2 rounded-full flex items-center"
-              >
-                <i class="fas fa-database mr-2"></i> MySQL
-              </div>
-              <div
-                class="skill-pill bg-yellow-900/50 text-yellow-300 px-4 py-2 rounded-full flex items-center"
-              >
-                <i class="fas fa-database mr-2"></i> MongoDB
-              </div>
-              <div
-                class="skill-pill bg-yellow-900/50 text-yellow-300 px-4 py-2 rounded-full flex items-center"
-              >
-                <i class="fas fa-database mr-2"></i> PostgreSQL
-              </div>
-              <div
-                class="skill-pill bg-yellow-900/50 text-yellow-300 px-4 py-2 rounded-full flex items-center"
-              >
-                <i class="fas fa-database mr-2"></i> SQL Server
-              </div>
-            </div>
+          <div class="skill-pill bg-purple-900/50 text-purple-300 px-4 py-2 rounded-full flex items-center">
+            <i class="fas fa-bold mr-2"></i> Bootstrap
           </div>
-
-          <!-- Tools & Platforms -->
-          <div
-            class="glass-card p-8 rounded-xl"
-            data-aos="fade-up"
-            data-aos-delay="100"
-          >
-            <div class="text-center mb-6">
-              <i class="fas fa-tools text-4xl text-red-400 mb-4"></i>
-              <h3 class="text-xl font-semibold">Tools & Platforms</h3>
-            </div>
-            <div class="flex flex-wrap gap-3 justify-center">
-              <div
-                class="skill-pill bg-red-900/50 text-red-300 px-4 py-2 rounded-full flex items-center"
-              >
-                <i class="fab fa-git-alt mr-2"></i> Git
-              </div>
-              <div
-                class="skill-pill bg-red-900/50 text-red-300 px-4 py-2 rounded-full flex items-center"
-              >
-                <i class="fab fa-github mr-2"></i> GitHub
-              </div>
-              <div
-                class="skill-pill bg-red-900/50 text-red-300 px-4 py-2 rounded-full flex items-center"
-              >
-                <i class="fab fa-docker mr-2"></i> Docker
-              </div>
-              <div
-                class="skill-pill bg-red-900/50 text-red-300 px-4 py-2 rounded-full flex items-center"
-              >
-                <i class="fab fa-aws mr-2"></i> AWS
-              </div>
-            </div>
+          <div class="skill-pill bg-purple-900/50 text-purple-300 px-4 py-2 rounded-full flex items-center">
+            <i class="fas fa-wind mr-2"></i> Tailwind CSS
           </div>
-
-          <!-- Design & Other -->
-          <div
-            class="glass-card p-8 rounded-xl"
-            data-aos="fade-up"
-            data-aos-delay="200"
-          >
-            <div class="text-center mb-6">
-              <i class="fas fa-paint-brush text-4xl text-pink-400 mb-4"></i>
-              <h3 class="text-xl font-semibold">Design & Other</h3>
-            </div>
-            <div class="flex flex-wrap gap-3 justify-center">
-              <div
-                class="skill-pill bg-pink-900/50 text-pink-300 px-4 py-2 rounded-full flex items-center"
-              >
-                <i class="fab fa-figma mr-2"></i> Figma
-              </div>
-              <div
-                class="skill-pill bg-pink-900/50 text-pink-300 px-4 py-2 rounded-full flex items-center"
-              >
-                <i class="fas fa-pencil-ruler mr-2"></i> UI/UX Design
-              </div>
-              <div
-                class="skill-pill bg-pink-900/50 text-pink-300 px-4 py-2 rounded-full flex items-center"
-              >
-                <i class="fas fa-mobile-alt mr-2"></i> Responsive Design
-              </div>
-              <div
-                class="skill-pill bg-pink-900/50 text-pink-300 px-4 py-2 rounded-full flex items-center"
-              >
-                <i class="fas fa-terminal mr-2"></i> REST APIs
-              </div>
-            </div>
+          <div class="skill-pill bg-purple-900/50 text-purple-300 px-4 py-2 rounded-full flex items-center">
+            <i class="fas fa-arrow-right mr-2"></i> Next.js
+          </div>
+          <div class="skill-pill bg-purple-900/50 text-purple-300 px-4 py-2 rounded-full flex items-center">
+            <i class="fab fa-figma mr-2"></i> Figma
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- Contact Section -->
+      <!-- Backend Development -->
+      <div class="glass-card p-8 rounded-xl" data-aos="fade-up" data-aos-delay="200">
+        <div class="text-center mb-6">
+          <i class="fas fa-server text-4xl text-green-400 mb-4"></i>
+          <h3 class="text-xl font-semibold">Backend Development</h3>
+        </div>
+        <div class="flex flex-wrap gap-3 justify-center">
+          <div class="skill-pill bg-green-900/50 text-green-300 px-4 py-2 rounded-full flex items-center">
+            <i class="fab fa-node-js mr-2"></i> Node.js
+          </div>
+          <div class="skill-pill bg-green-900/50 text-green-300 px-4 py-2 rounded-full flex items-center">
+            <i class="fas fa-code mr-2"></i> Express.js
+          </div>
+          <div class="skill-pill bg-green-900/50 text-green-300 px-4 py-2 rounded-full flex items-center">
+            <i class="fas fa-leaf mr-2"></i> Spring Boot
+          </div>
+          <div class="skill-pill bg-green-900/50 text-green-300 px-4 py-2 rounded-full flex items-center">
+            <i class="fab fa-microsoft mr-2"></i> .NET
+          </div>
+          <div class="skill-pill bg-green-900/50 text-green-300 px-4 py-2 rounded-full flex items-center">
+            <i class="fab fa-php mr-2"></i> Laravel
+          </div>
+          <div class="skill-pill bg-green-900/50 text-green-300 px-4 py-2 rounded-full flex items-center">
+            <i class="fab fa-php mr-2"></i> PHP
+          </div>
+        </div>
+      </div>
+
+      <!-- Databases -->
+      <div class="glass-card p-8 rounded-xl" data-aos="fade-up">
+        <div class="text-center mb-6">
+          <i class="fas fa-database text-4xl text-yellow-400 mb-4"></i>
+          <h3 class="text-xl font-semibold">Databases</h3>
+        </div>
+        <div class="flex flex-wrap gap-3 justify-center">
+          <div class="skill-pill bg-yellow-900/50 text-yellow-300 px-4 py-2 rounded-full flex items-center">
+            <i class="fas fa-database mr-2"></i> MySQL
+          </div>
+          <div class="skill-pill bg-yellow-900/50 text-yellow-300 px-4 py-2 rounded-full flex items-center">
+            <i class="fas fa-database mr-2"></i> MongoDB
+          </div>
+        </div>
+      </div>
+
+      <!-- Tools & Platforms -->
+      <div class="glass-card p-8 rounded-xl" data-aos="fade-up" data-aos-delay="100">
+        <div class="text-center mb-6">
+          <i class="fas fa-tools text-4xl text-red-400 mb-4"></i>
+          <h3 class="text-xl font-semibold">Tools & Platforms</h3>
+        </div>
+        <div class="flex flex-wrap gap-3 justify-center">
+          <div class="skill-pill bg-red-900/50 text-red-300 px-4 py-2 rounded-full flex items-center">
+            <i class="fab fa-git-alt mr-2"></i> Git
+          </div>
+          <div class="skill-pill bg-red-900/50 text-red-300 px-4 py-2 rounded-full flex items-center">
+            <i class="fab fa-github mr-2"></i> GitHub
+          </div>
+          <div class="skill-pill bg-red-900/50 text-red-300 px-4 py-2 rounded-full flex items-center">
+            <i class="fas fa-code mr-2"></i> VS Code
+          </div>
+          <div class="skill-pill bg-red-900/50 text-red-300 px-4 py-2 rounded-full flex items-center">
+            <i class="fas fa-lightbulb mr-2"></i> IntelliJ
+          </div>
+          <div class="skill-pill bg-red-900/50 text-red-300 px-4 py-2 rounded-full flex items-center">
+            <i class="fab fa-docker mr-2"></i> Docker
+          </div>
+          <div class="skill-pill bg-red-900/50 text-red-300 px-4 py-2 rounded-full flex items-center">
+            <i class="fas fa-paper-plane mr-2"></i> Postman
+          </div>
+          <div class="skill-pill bg-red-900/50 text-red-300 px-4 py-2 rounded-full flex items-center">
+            <i class="fab fa-figma mr-2"></i> Figma
+          </div>
+        </div>
+      </div>
+
+      <!-- Design & Other -->
+      <div class="glass-card p-8 rounded-xl" data-aos="fade-up" data-aos-delay="200">
+        <div class="text-center mb-6">
+          <i class="fas fa-paint-brush text-4xl text-pink-400 mb-4"></i>
+          <h3 class="text-xl font-semibold">UI/UX Design</h3>
+        </div>
+        <div class="flex flex-wrap gap-3 justify-center">
+          <div class="skill-pill bg-pink-900/50 text-pink-300 px-4 py-2 rounded-full flex items-center">
+            <i class="fab fa-figma mr-2"></i> Figma
+          </div>
+          <div class="skill-pill bg-pink-900/50 text-pink-300 px-4 py-2 rounded-full flex items-center">
+            <i class="fas fa-pencil-ruler mr-2"></i> UI/UX Design
+          </div>
+          <div class="skill-pill bg-pink-900/50 text-pink-300 px-4 py-2 rounded-full flex items-center">
+            <i class="fas fa-mobile-alt mr-2"></i> Responsive Design
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+ <!-- Contact Section -->
     <section id="contact" class="py-20 px-6 relative z-10">
       <div class="max-w-6xl mx-auto">
         <h2
@@ -846,10 +1006,10 @@
                 <div>
                   <h4 class="font-medium">GitHub</h4>
                   <a
-                    href="https://github.com/Tharusha553"
+                    href="https://github.com/Tharusha-Ishan"
                     target="_blank"
                     class="text-blue-400 hover:underline"
-                    >github.com/Tharusha553</a
+                    >github.com/Tharusha-Ishan</a
                   >
                 </div>
               </div>
@@ -902,7 +1062,7 @@
           </div>
 
           <div data-aos="fade-left">
-            <form class="space-y-6" onsubmit="submitForm(event)">
+            <form id="contact-form" class="space-y-6" onsubmit="submitForm(event)">
               <div class="grid md:grid-cols-2 gap-6">
                 <div>
                   <label for="name" class="block mb-2">Name</label>
@@ -964,7 +1124,7 @@
             >Tharusha Ishan</a
           >
         </div>
-        <div class="flex justify-center space-x-8 mb-6">
+        <div class="flex justify-center space-x-3 mb-6">
           <a href="#about" class="hover:text-blue-400 transition">About</a>
           <a href="#education" class="hover:text-blue-400 transition"
             >Education</a
@@ -983,7 +1143,7 @@
             <i class="fas fa-envelope"></i>
           </a>
           <a
-            href="https://github.com/Tharusha553"
+            href="https://github.com/Tharusha-Ishan"
             target="_blank"
             class="text-xl hover:text-blue-400"
           >
@@ -1025,6 +1185,54 @@
       <i class="fas fa-arrow-up text-white"></i>
     </button>
 
+
+
+
+ <!-- Email server.js intergration -->
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  // Initialize EmailJS with your User ID
+  (function() {
+    emailjs.init({
+      publicKey: "lsFhgCv5tQjxmdeY_",
+    });
+  })();
+  
+  function submitForm(event) {
+    event.preventDefault();
+    
+    const serviceID = "service_q46vjrl";
+    const templateID = "template_xvdvc1d";
+    
+    // Get form data
+    const formData = {
+      from_name: document.getElementById("name").value,
+      from_email: document.getElementById("email").value,
+      subject: document.getElementById("subject").value,
+      message: document.getElementById("message").value
+    };
+    
+    // Send email
+    emailjs.send(serviceID, templateID, formData)
+      .then(
+        (response) => {
+          console.log("SUCCESS!", response.status, response.text);
+          alert("Message sent successfully!");
+          document.getElementById("contact-form").reset();
+        },
+        (error) => {
+          console.log("FAILED...", error);
+          alert("Failed to send message. Please try again later.");
+        }
+      );
+  }
+</script>
+
+
+
+
+
     <!-- Scripts -->
     <script>
       // Initialize AOS (Animate On Scroll)
@@ -1054,6 +1262,11 @@
         window.scrollTo({ top: 0, behavior: "smooth" });
       });
 
+
+
+
+/*
+
       // Form submission
       function submitForm(e) {
         e.preventDefault();
@@ -1061,6 +1274,92 @@
         alert("Thank you for your message! I will get back to you soon.");
         e.target.reset();
       }
+
+
+*/
+
+
+
+
+      // Resume download functionality
+      function downloadResume() {
+        // CV link
+        const pdfUrl =
+          "https://drive.google.com/file/d/16T81oc_ZZO1ROu5ctqvZTZUttvInE1f_/view?usp=drivesdk";
+        const link = document.createElement("a");
+        link.href = pdfUrl;
+        link.download = "Tharusha_Ishan_CV.pdf";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+
+      // Add event listeners to resume buttons
+      document
+        .getElementById("resumeBtn")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          downloadResume();
+        });
+
+      document
+        .getElementById("resumeBtnMobile")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          downloadResume();
+        });
+
+      // Project modal functionality
+      const modal = document.getElementById("projectModal");
+      const closeBtn = document.querySelector(".close-btn");
+
+      function openProjectModal(
+        title,
+        description,
+        image,
+        technologies,
+        features,
+        liveLink,
+        githubLink
+      ) {
+        document.getElementById("modalTitle").textContent = title;
+        document.getElementById("modalDescription").textContent = description;
+        document.getElementById("modalImage").src = image;
+
+        const technologiesContainer =
+          document.getElementById("modalTechnologies");
+        technologiesContainer.innerHTML = "";
+        technologies.forEach((tech) => {
+          const techPill = document.createElement("span");
+          techPill.className =
+            "skill-pill bg-blue-900/50 text-blue-300 px-3 py-1 rounded-full text-sm";
+          techPill.textContent = tech;
+          technologiesContainer.appendChild(techPill);
+        });
+
+        const featuresContainer = document.getElementById("modalFeatures");
+        featuresContainer.innerHTML = "";
+        features.forEach((feature) => {
+          const featureItem = document.createElement("li");
+          featureItem.textContent = feature;
+          featuresContainer.appendChild(featureItem);
+        });
+
+        document.getElementById("liveLink").href = liveLink;
+        document.getElementById("githubLink").href = githubLink;
+
+        modal.style.display = "block";
+      }
+
+      closeBtn.addEventListener("click", function () {
+        modal.style.display = "none";
+      });
+
+      window.addEventListener("click", function (event) {
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      });
 
       // Three.js Background
       const threeContainer = document.getElementById("threejs-container");
